@@ -1,0 +1,9 @@
+<div class="d-flex">
+
+  <app-sidebar *ngIf="showMenu"></app-sidebar>
+
+  <app-page-content-wrapper (toggleMenuVisibility)="toggleMenuVisibility()">
+    <router-outlet></router-outlet>
+  </app-page-content-wrapper>
+
+</div>

@@ -1,0 +1,8 @@
+<div class="d-flex justify-content-between align-items-center">
+  {{ groceryItem?.quantity }}
+  &times;
+  {{ groceryItem?.name }}
+  <span class="btn btn-outline-danger btn-sm" (click)="remove()">
+    &times;
+  </span>
+</div>

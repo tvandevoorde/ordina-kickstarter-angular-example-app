@@ -1,0 +1,179 @@
+<div class="row">
+  <div class="col-sm">
+    <h3>NgIf: conditional display</h3>
+    <p>Will show the element when the value is true.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>isTitleVisible = false;
+title = 'Hello World!';
+
+toggleTitleVisibility(): void &#123;
+this.isTitleVisible = !this.isTitleVisible;
+&#125;
+  </pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;div *ngIf="isTitleVisible"&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;
+&lt;button (click)="toggleTitleVisibility()"&gt;Show Title&lt;/button&gt;
+{{isTitleVisible}}</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <div *ngIf="isTitleVisible">{{title}}</div>
+    <button (click)="toggleTitleVisibility()">Show Title</button>
+    {{isTitleVisible}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+      <div class="font-weight-bold">note</div>
+    <p>You can also use ng-container instead of the div or you could use <br />
+      &lt;ng-template [ngIf]="..."&gt;...&lt;/ng-template&gt;</p>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>NgFor: for-loop</h3>
+    <p>Loops over a list of items.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>numbers = ['one', 'two', 'three'];</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <span *ngFor="let num of numbers; let i=index;">
+      {{ i }} {{ num }}
+    </span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;span *ngFor="let num of numbers; let i=index;"&gt;
+&#123;&#123; i &#125;&#125; &#123;&#123; num &#125;&#125;
+&lt;/span&gt;</pre>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <div class="font-weight-bold">note</div>
+      <p>You can also use ng-container instead of the div or you could use <br />
+        &lt;ng-template [ngFor]="..."&gt;...&lt;/ng-template&gt;</p>
+    </div>
+  </div>
+
+  <hr />
+
+    <div class="row">
+      <div class="col-sm">
+          <h3>NgSwitch: switch statement</h3>
+          <p>specifies an expression to match against</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="font-weight-bold">component code</div>
+        <pre>rolledNumber: number;
+roll(): void &"#123;
+  this.rolledNumber = Math.floor(Math.random() * 6) + 1;
+&#125;</pre>
+      </div>
+      <div class="col-sm">
+        <div class="font-weight-bold">output</div>
+        <button (click)="roll()">Roll</button><br />
+        {{rolledNumber}}
+        <div [ngSwitch]="rolledNumber">
+            <span *ngSwitchCase="1">Too bad we're not playing cards!</span>
+            <span *ngSwitchCase="2">Bad luck!</span>
+            <span *ngSwitchCase="3">Halfway there!</span>
+            <span *ngSwitchCase="4">Better luck next time!</span>
+            <span *ngSwitchCase="5">Very good!</span>
+            <span *ngSwitchCase="6">Jackpot!</span>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="font-weight-bold">component template</div>
+        <pre ngNonBindable>&lt;button (click)="roll()"&gt;Roll&lt;/button&gt;
+&#123;&#123;rolledNumber&#125;&#125;
+&lt;div [ngSwitch]="rolledNumber"&gt;
+  &lt;span *ngSwitchCase="1"&gt;Too bad we're not playing cards!&lt;/span&gt;
+  &lt;span *ngSwitchCase="2"&gt;Bad luck!&lt;/span&gt;
+  &lt;span *ngSwitchCase="3"&gt;Halfway there!&lt;/span&gt;
+  &lt;span *ngSwitchCase="4"&gt;Better luck next time!&lt;/span&gt;
+  &lt;span *ngSwitchCase="5"&gt;Very good!&lt;/span&gt;
+  &lt;span *ngSwitchCase="6"&gt;Jackpot!&lt;/span&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-sm">
+        <h3>NgContainer, NgTemplate and NgTemplateOutlet</h3>
+        <p>Using NgContainer, we do not need the div for NgSwitch.</p>
+        <p>We can define templates using NgTemplate and use them using NgTemplateOutlet.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="font-weight-bold">component code</div>
+        <pre>rolledNumber: number;
+roll(): void &"#123;
+  this.rolledNumber = Math.floor(Math.random() * 6) + 1;
+&#125;</pre>
+      </div>
+      <div class="col-sm">
+        <div class="font-weight-bold">output</div>
+        <button (click)="roll()">Roll</button><br />
+        {{rolledNumber}}
+        <ng-container [ngSwitch]="rolledNumber">
+            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="roll1"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="2"><ng-container *ngTemplateOutlet="roll2"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="3"><ng-container *ngTemplateOutlet="roll3"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="4"><ng-container *ngTemplateOutlet="roll4"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="5"><ng-container *ngTemplateOutlet="roll5"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="6"><ng-container *ngTemplateOutlet="roll6"></ng-container></ng-container>
+        </ng-container>
+        <ng-template #roll1>Too bad we're not playing cards!</ng-template>
+        <ng-template #roll2>Bad luck!</ng-template>
+        <ng-template #roll3>Halfway there!</ng-template>
+        <ng-template #roll4>Better luck next time!</ng-template>
+        <ng-template #roll5>Very good!</ng-template>
+        <ng-template #roll6>Jackpot!</ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="font-weight-bold">component template</div>
+        <pre ngNonBindable>&lt;button (click)="roll()"&gt;Roll&lt;/button&gt;
+&#123;&#123;rolledNumber&#125;&#125;
+&lt;ng-container [ngSwitch]="rolledNumber"&gt;
+&lt;ng-container *ngSwitchCase="1"&gt;&lt;ng-container *ngTemplateOutlet="roll1"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;ng-container *ngSwitchCase="2"&gt;&lt;ng-container *ngTemplateOutlet="roll2"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;ng-container *ngSwitchCase="3"&gt;&lt;ng-container *ngTemplateOutlet="roll3"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;ng-container *ngSwitchCase="4"&gt;&lt;ng-container *ngTemplateOutlet="roll4"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;ng-container *ngSwitchCase="5"&gt;&lt;ng-container *ngTemplateOutlet="roll5"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;ng-container *ngSwitchCase="6"&gt;&lt;ng-container *ngTemplateOutlet="roll6"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+&lt;/ng-container&gt;
+&lt;ng-template #roll1&gt;Too bad we're not playing cards!&lt;/ng-template&gt;
+&lt;ng-template #roll2&gt;Bad luck!&lt;/ng-template&gt;
+&lt;ng-template #roll3&gt;Halfway there!&lt;/ng-template&gt;
+&lt;ng-template #roll4&gt;Better luck next time!&lt;/ng-template&gt;
+&lt;ng-template #roll5&gt;Very good!&lt;/ng-template&gt;
+&lt;ng-template #roll6&gt;Jackpot!&lt;/ng-template&gt;</pre>
+      </div>
+    </div>
+
+  <hr />

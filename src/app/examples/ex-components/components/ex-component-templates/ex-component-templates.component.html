@@ -1,0 +1,137 @@
+<div class="page-header">
+  <h1>Component Templates</h1>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <h3>String Interpolation</h3>
+    <p>Component to Template</p>
+    <p>The variable 'title' from the component context is interpolated in the template.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>title = 'Hello world!';</pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&#123;&#123;title&#125;&#125;</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    {{title}}
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>Property Binding</h3>
+    <p>Component to Template</p>
+    <p>The variable 'title' from the component context is set as the property value.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>title = 'Hello world!';</pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;input type="text" [value]="title" /&gt;</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <input type="text" [value]="title" />
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>Event Binding</h3>
+    <p>Template to Component</p>
+    <p>A method 'onClick' is added to the component. This method will show an alert dialog. In the template a button
+      is added and the 'onClick' method is bound to the click event.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>onClick(): void &#123;
+  alert('you clicked');
+&#125;
+            </pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;button (click)="onClick()"&gt;Click me&lt;button&gt;</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <button (click)="onClick()">Click me</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>Event Binding (with arguments)</h3>
+    <p>Template to Component</p>
+    <p>Same as previous but we include a parameter.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>onClick(text: string): void &#123;
+  alert(text);
+&#125;
+            </pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;button (click)="onClick('Hello World')"&gt;Click me&lt;button&gt;</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <button (click)="onClick2('Hello World')">Click me</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>Two-way-Binding</h3>
+    <p>Component to Template and Template to Component</p>
+    <p>We can set the [(ngModel)] attribute to a variable in the component. Note: you must import the FormsModule from
+      @angular/forms.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>name: string;
+
+clearName(): void &#123;
+  this.name = '';
+&#125;</pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;input type="text" [(ngModel)]="name" /&gt;
+&lt;button (click)="clearName()&gt;Clear&lt;button&gt;
+&#123;&#123;name&#125;&#125;</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">AppModule</div>
+    <pre>import &#123; FormsModule &#125; from '@angular/forms';</pre>
+    <pre>imports: [ BrowserModule, FormsModule ]</pre>
+    <br />
+    <div class="font-weight-bold">output</div>
+    <input type="text" [(ngModel)]="name" /><br />
+    <button (click)="clearName()">Clear</button><br />
+    {{name}}
+  </div>
+</div>
+
+<hr />

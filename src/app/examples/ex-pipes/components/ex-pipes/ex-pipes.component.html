@@ -1,0 +1,182 @@
+<div class="row">
+  <div class="col-sm">
+    <h3>Pipes</h3>
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+
+    <h4>Numbers</h4>
+
+    <hr />
+
+    <h5>DecimalPipe</h5>
+    <p>Transforms a decimal number to a string accorsing to locale rules.</p>
+    <p ngNonBindable>&#123;&#123; value_expression | number [ : digitsInfo [ : locale ] ] &#125;&#125;</p>
+    <p>Digitsinfo: minDigits.minFractionDigits-maxFractionDigits</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; number &#125;&#125;</div>
+    <div>{{ number }}</div>
+    <div><b>Formatted by locale</b></div>
+    <div ngNonBindable>&#123;&#123; number | number &#125;&#125;</div>
+    <div>{{ number | number }}</div>
+    <div><b>Formatted by argument</b></div>
+    <div ngNonBindable>&#123;&#123; number | number: '3.1-5' &#125;&#125;</div>
+    <div>{{ number | number: '3.1-5' }}</div>
+    <div ngNonBindable>&#123;&#123; number | number: '3.5-5' &#125;&#125;</div>
+    <div>{{ number | number: '4.5-5' }}</div>
+    <div><b>Formatted by custom locale</b></div>
+    <div ngNonBindable>&#123;&#123; number | number: '3.5-5':'en-UK' &#125;&#125;</div>
+    <div>{{ number | number: '4.5-5':'en-UK' }}</div>
+
+    <hr />
+
+    <h5>CurrencyPipe</h5>
+    <p>Transforms a number to a currency string.</p>
+    <p ngNonBindable>&#123;&#123; value_expression | currency [ : currencyCode [ : display [ : digitsInfo [ : locale ] ] ] ] &#125;&#125;</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; currencyNumber &#125;&#125;</div>
+    <div>{{ currencyNumber }}</div>
+    <div><b>Formatted by locale</b></div>
+    <div ngNonBindable>&#123;&#123; currencyNumber | currency &#125;&#125;</div>
+    <div>{{ currencyNumber | currency }}</div>
+    <div><b>Formatted by arguments</b></div>
+    <div ngNonBindable>&#123;&#123; currencyNumber | currency: 'CAD':'symbol':'1.3-3' &#125;&#125;</div>
+    <div>{{ currencyNumber | currency: 'CAD':'symbol':'1.3-3' }}</div>
+    <div ngNonBindable>&#123;&#123; currencyNumber | currency: 'CAD':'symbol-narrow':'1.3-3' &#125;&#125;</div>
+    <div>{{ currencyNumber | currency: 'CAD':'symbol-narrow':'1.3-3' }}</div>
+    <div ngNonBindable>&#123;&#123; currencyNumber | currency: 'CAD':'code':'1.3-3' &#125;&#125;</div>
+    <div>{{ currencyNumber | currency: 'CAD':'code':'1.3-3' }}</div>
+    <div><b>Formatted by manual currency</b></div>
+    <div>Japanese Yen does not have cents</div>
+    <div ngNonBindable>&#123;&#123; currencyNumber | currency: 'JPY' &#125;&#125;</div>
+    <div>{{ currencyNumber | currency: 'JPY' }}</div>
+
+    <hr />
+
+    <h5>PercentPipe</h5>
+    <p>Transforms a number to a percentage string.</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; percentNumber &#125;&#125;</div>
+    <div>{{ percentNumber }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&#123;&#123; percentNumber | percent &#125;&#125;</div>
+    <div>{{ percentNumber | percent }}</div>
+
+    <hr />
+
+    <h4>Text</h4>
+
+    <hr />
+
+    <h5>LowerCasePipe</h5>
+    <p>Transforms a text to all lowercase.</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText &#125;&#125;</div>
+    <div>{{ miscasedText }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText | lowercase &#125;&#125;</div>
+    <div>{{ miscasedText | lowercase }}</div>
+
+    <hr />
+
+    <h5>TitleCasePipe</h5>
+    <p>Transforms a text to all titlecase.</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText &#125;&#125;</div>
+    <div>{{ miscasedText }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText | titlecase &#125;&#125;</div>
+    <div>{{ miscasedText | titlecase }}</div>
+
+    <hr />
+
+
+    <h5>UpperCasePipe</h5>
+    <p>Transforms a text to all uppercase.</p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText &#125;&#125;</div>
+    <div>{{ miscasedText }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&#123;&#123; miscasedText | uppercase &#125;&#125;</div>
+    <div>{{ miscasedText | uppercase }}</div>
+
+    <hr />
+
+    <h4>Date</h4>
+
+    <hr />
+
+    <h5>DatePipe</h5>
+    <p>Transforms a date to a string according to locale settings.</p>
+    <p ngNonBindable>&#123;&#123; value_expression | date [ : format [ : timezone [ : locale ] ] ] &#125;&#125;</p>
+    <p>See <a href="https://angular.io/api/common/DatePipe">the angular documentation</a></p>
+    <div><b>Unformatted</b></div>
+    <div ngNonBindable>&#123;&#123; date &#125;&#125;</div>
+    <div>{{ date }}</div>
+    <div><b>Formatted by locale</b></div>
+    <div ngNonBindable>&#123;&#123; date | date &#125;&#125;</div>
+    <div>{{ date | date }}</div>
+    <div><b>Formatted by custom format</b></div>
+    <div ngNonBindable>&#123;&#123; date | date: 'dd-MM-yyyy' &#125;&#125;</div>
+    <div>{{ date | date: 'dd-MM-yyyy' }}</div>
+    <div ngNonBindable>&#123;&#123; date | date: 'short':'UTC+9':'jp' &#125;&#125;</div>
+    <div>{{ date | date: 'short':'UTC+9':'ja' }}</div>
+    <p>Note: you have to register the locale and locale extra first for this to work!</p>
+
+    <hr />
+
+    <h4>Object</h4>
+
+    <hr />
+
+    <h5>AsyncPipe</h5>
+    <p>Subscribes to an observable or primise and returns the latest emitted value.</p>
+    <button class="btn btn-primary btn-sm" (click)="triggerDelayedObject()">Trigger</button>
+    <div><b>Unformatted</b></div>
+    <div>{{ delayedObject }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&#123;&#123; delayedObject | async &#125;&#125;</div>
+    <div>{{ delayedObject | async }}</div>
+
+    <hr />
+
+    <h5>JsonPipe</h5>
+    <p>Transforms an object to a JSON formatted string.</p>
+    <div><b>Unformatted</b></div>
+    <div>{{ object }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&lt;pre&gt;&#123;&#123; object | json &#125;&#125;&lt;/pre&gt;</div>
+    <div><pre>{{ object | json }}</pre></div>
+
+    <hr />
+
+    <h4>Translations</h4>
+
+    <hr />
+
+    <h5>I18nSelectPipe</h5>
+    <p>See <a href="https://angular.io/api/common/I18nSelectPipe">angular documentation</a>.</p>
+
+    <hr />
+
+    <h5>I18nPluralPipe</h5>
+    <p>See <a href="https://angular.io/api/common/I18nPluralPipe">angular documentation</a>.</p>
+
+    <hr />
+
+    <h4>Custom pipes</h4>
+
+    <hr />
+
+    <h5>InszPipe</h5>
+    <p>Transforms a numeric insz to a formatted string.</p>
+    <div><b>Unformatted</b></div>
+    <div>{{ insz }}</div>
+    <div><b>Formatted</b></div>
+    <div ngNonBindable>&lt;pre&gt;&#123;&#123; insz | insz &#125;&#125;&lt;/pre&gt;</div>
+    <div><pre>{{ insz | insz }}</pre></div>
+
+  </div>
+</div>

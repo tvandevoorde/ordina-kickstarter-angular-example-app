@@ -1,0 +1,11 @@
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="groceryItem.name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="quantity">Quantity</label>
+    <input type="number" name="quantity" [(ngModel)]="groceryItem.quantity" class="form-control">
+  </div>
+  <button type="submit" (click)="addItem(groceryItem)" class="btn btn-primary">Add</button>
+</form>

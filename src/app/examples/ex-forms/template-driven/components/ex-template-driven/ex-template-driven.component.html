@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-sm">
+    <h1>Contact</h1>
+    <form #questionForm="ngForm" (ngSubmit)=(send())>
+
+      <div *ngIf="sent && !questionForm.pristine" class="alert alert-success">The form has been sent!</div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #name="ngModel" type="text" class="form-control form-control-sm" name="name" [(ngModel)]="question.name"
+          required />
+        <div class="alert alert-danger" [hidden]="name.valid || name.pristine">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control form-control-sm" name="email" placeholder="name@ordina.be"
+          [(ngModel)]="question.email" #email="ngModel" required />
+        <div class="alert alert-danger" [hidden]="email.valid || email.pristine">
+          Email is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="businessUnitCode">Business Unit</label>
+        <select class="form-control form-control-sm" name="businessUnitCode" [(ngModel)]="question.businessUnitCode"
+          required>
+          <option *ngFor="let bu of businessUnits" [value]="bu.code">{{bu.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="topicId">Topic</label>
+        <select class="form-control form-control-sm" name="topicId" [(ngModel)]="question.topicId" required>
+          <option *ngFor="let topic of topics" [value]="topic.id">{{topic.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="questionText">Question</label>
+        <textarea class="form-control form-control-sm" name="questionText" [(ngModel)]="question.questionText" rows="3"
+          #questionText="ngModel" required></textarea>
+        <div class="alert alert-danger" [hidden]="questionText.valid || questionText.pristine">
+          Enter your question
+        </div>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="priority" id="lowPriority" value="0" checked>
+        <label class="form-check-label" for="lowPriority">
+          Low Priority
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="priority" id="normalPriority" value="1">
+        <label class="form-check-label" for="normalPriority">
+          Normal Priority
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <input class="form-check-input" type="radio" name="priority" id="highPriority" value="2">
+        <label class="form-check-label" for="highPriority">
+          High Priority
+        </label>
+      </div>
+
+      <hr />
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="receiveCopy" value="true">
+            <label class="form-check-label" for="receiveCopy">Receive a copy</label>
+          </div>
+
+        </div>
+        <div class="col-sm text-right button-box">
+          <button class="btn btn-primary" (click)="questionForm.reset(); setDefaults();">Reset</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!questionForm.valid">Send</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="col-sm">
+    <h5>Demo Output</h5>
+    <pre>{{ question |json }}</pre>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <form #inszForm="ngForm">
+      <div class="form-group">
+        <label for="insz">Custom insz validator</label>
+        <input #inszInput="ngModel" type="text" class="form-control form-control-sm" name="insz" [(ngModel)]="insz" hasValidInsz />
+        <div class="alert alert-danger" [hidden]="inszInput.valid || inszInput.pristine">
+          INSZ is invalid
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm">
+    {{ insz }}
+  </div>
+</div>

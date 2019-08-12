@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li *ngFor="let item of groceryList" class="list-group-item">
+      <app-grocery-list-item [groceryItem]="item" (removeItem)="removeItem(item)"></app-grocery-list-item>
+    </li>
+  </ul>

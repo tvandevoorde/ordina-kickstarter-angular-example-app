@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-sm">
+    <h1>Contact</h1>
+
+    <div *ngIf="sent && !form.pristine" class="alert alert-success">The form has been sent!</div>
+
+    <form [formGroup]="form">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" class="form-control form-control-sm" name="name" />
+        <div class="alert alert-danger"
+          *ngIf="form.get('name').dirty && form.get('name').errors && form.get('name').errors['required']">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" formControlName="email" class="form-control form-control-sm" name="email"
+          placeholder="name@ordina.be">
+        <div class="alert alert-danger"
+          *ngIf="form.get('email').dirty && form.get('email').errors && form.get('email').errors['required']">
+          Email is required
+        </div>
+        <div class="alert alert-danger"
+          *ngIf="form.get('email').dirty && form.get('email').errors && form.get('email').errors['email']">
+          Invalid email address
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="unit">Business Unit</label>
+        <select formControlName="businessUnitCode" class="form-control form-control-sm" id="unit">
+          <option *ngFor="let bu of businessUnits" [value]="bu.code">{{bu.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="topic">Topic</label>
+        <select formControlName="topicId" class="form-control form-control-sm" id="topic">
+          <option *ngFor="let topic of topics" [value]="topic.id">{{topic.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="questionText">Question</label>
+        <textarea formControlName="questionText" class="form-control form-control-sm" name="questionText"
+          rows="3"></textarea>
+        <div class="alert alert-danger"
+          *ngIf="form.get('questionText').dirty && form.get('questionText').errors && form.get('questionText').errors['required']">
+          Enter your question
+        </div>
+      </div>
+
+      <div class="form-check">
+        <input formControlName="priority" class="form-check-input" type="radio" name="priority" id="lowPriority"
+          [value]="0" checked>
+        <label class="form-check-label" for="lowPriority">
+          Low Priority
+        </label>
+      </div>
+      <div class="form-check">
+        <input formControlName="priority" class="form-check-input" type="radio" name="priority" id="normalPriority"
+          [value]="1">
+        <label class="form-check-label" for="normalPriority">
+          Normal Priority
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <input formControlName="priority" class="form-check-input" type="radio" name="priority" id="highPriority"
+          [value]="2">
+        <label class="form-check-label" for="highPriority">
+          High Priority
+        </label>
+      </div>
+
+      <hr />
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-check form-check-inline">
+            <input formControlName="receiveCopy" class="form-check-input" type="checkbox" id="receiveCopy" value="true">
+            <label class="form-check-label" for="receiveCopy">Receive a copy</label>
+          </div>
+        </div>
+
+        <div class="col-sm text-right button-box">
+          <button class="btn btn-primary" (click)="form.reset();setDefaults();">Reset</button>
+          <button type="submit" class="btn btn-primary" (click)="send()" [disabled]="!form.valid">Send</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="col-sm">
+    <pre>{{ form.value | json }}</pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <h1>Validators</h1>
+    <form [formGroup]="validatorTest">
+
+      <div class="form-group">
+        <label for="min">min value = 1</label>
+        <input type="number" formControlName="minValue" class="form-control form-control-sm" name="min" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('minValue').dirty && validatorTest.get('minValue').errors">
+          <pre>{{ validatorTest.get('minValue').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="max">max value = 10</label>
+        <input type="number" formControlName="maxValue" class="form-control form-control-sm" name="max" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('maxValue').dirty && validatorTest.get('maxValue').errors">
+          <pre>{{ validatorTest.get('maxValue').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="requiredText">required</label>
+        <input type="text" formControlName="requiredText" class="form-control form-control-sm" name="requiredText" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('requiredText').dirty && validatorTest.get('requiredText').errors">
+          <pre>{{ validatorTest.get('requiredText').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input formControlName="requiredTrue" class="form-check-input" type="checkbox" id="requiredTrue" value="true">
+          <label class="form-check-label" for="requiredTrue">This must be checked</label>
+        </div>
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('requiredTrue').dirty && validatorTest.get('requiredTrue').errors">
+          <pre>{{ validatorTest.get('requiredTrue').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Valid email address</label>
+        <input type="email" formControlName="email" class="form-control form-control-sm" name="email">
+        <div class="alert alert-danger" *ngIf="validatorTest.get('email').dirty && validatorTest.get('email').errors">
+          <pre>{{ validatorTest.get('email').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="minLength">min length = 3</label>
+        <input type="text" formControlName="minLength" class="form-control form-control-sm" name="minLength" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('minLength').dirty && validatorTest.get('minLength').errors">
+          <pre>{{ validatorTest.get('minLength').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="maxLength">max value = 6</label>
+        <input type="text" formControlName="maxLength" class="form-control form-control-sm" name="maxLength" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('maxLength').dirty && validatorTest.get('maxLength').errors">
+          <pre>{{ validatorTest.get('maxLength').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="patternCheck">pattern for INSZ</label>
+        <input type="text" formControlName="patternCheck" class="form-control form-control-sm" name="patternCheck" />
+        <div class="alert alert-danger"
+          *ngIf="validatorTest.get('patternCheck').dirty && validatorTest.get('patternCheck').errors">
+          <pre>{{ validatorTest.get('patternCheck').errors | json }}</pre>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="insz">custom INSZ validator</label>
+        <input type="text" formControlName="insz" class="form-control form-control-sm" name="insz" />
+        <div class="alert alert-danger" *ngIf="validatorTest.get('insz').dirty && validatorTest.get('insz').errors">
+          <pre>{{ validatorTest.get('insz').errors | json }}</pre>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="col-sm">
+    <pre>{{ validatorTest.value | json }}</pre>
+  </div>
+</div>

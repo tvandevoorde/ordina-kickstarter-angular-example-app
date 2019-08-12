@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-sm">
+    <h3>[attr.x]="y"</h3>
+    <p>Set attribute x on element to value y.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>image = 'assets/sad.png';
+makeHappy() &#123;
+this.image = 'assets/happy.png';
+&#125;</pre>
+
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;img [attr.src]="image" /&gt;
+&lt;button (click)="makeHappy()"&gt;Smile&lt;/button&gt;</pre>
+  </div>
+
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <img [attr.src]="image" />
+    <button (click)="makeHappy()">Smile</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>[class.x]="y"</h3>
+    <p>If y == true, add class x to the element.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>hasBorder = false;
+addBorder() &#123;
+this.hasBorder = true;
+&#125;</pre>
+
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;div [class.border]="hasBorder"&gt;Lorem Ipsum&lt;/div&gt;
+&lt;button (click)="addBorder()"&gt;Add border&lt;/button&gt;</pre>
+  </div>
+
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <div [class.border]="hasBorder">Lorem Ipsum</div>
+    <button (click)="addBorder()">Add border</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>[ngClass]</h3>
+    <p>More powerful ways for setting classes</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>myNumber = 1;
+getMyClass() &#123;
+return &#123;
+  'text-muted': this.myNumber == 1,
+  'text-primary': this.myNumber == 2,
+  'text-success': this.myNumber == 3,
+  'text-info': this.myNumber == 4,
+  'text-warning': this.myNumber == 5,
+  'text-danger': this.myNumber == 6
+&#125;;
+&#125;</pre>
+
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;div [ngClass]="getMyClass()"&gt;Lorem Ipsum&lt;/div&gt;
+&lt;input type="range" min="1" max="6" [(ngModel)]="myNumber" /&gt;</pre>
+  </div>
+
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <div [ngClass]="getMyClass()">Lorem Ipsum</div>
+    <input type="range" min="1" max="6" [(ngModel)]="myNumber" />
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
+    <h3>[NgStyle]</h3>
+    <p>More powerful ways for setting styles</p>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm">
+      <div class="font-weight-bold">component code</div>
+      <pre>width = 40;
+getStyle() &#123;
+return &#123;
+  'width.px': this.width,
+  'background-color': this.width > 80 ? 'red' : 'lightgreen'
+&#125;;
+&#125;</pre>
+
+      <br />
+      <div class="font-weight-bold">component template</div>
+      <pre ngNonBindable>&lt;div [ngStyle]="getStyle()"&gt;Lorem Ipsum&lt;/div&gt;
+&lt;input type="range" min="40" max="100" [(ngModel)]="width" /&gt;
+&#123;&#123;width&#125;&#125;</pre>
+    </div>
+
+    <div class="col-sm">
+      <div class="font-weight-bold">output</div>
+      <div [ngStyle]="getStyle()">Hello!</div>
+      <input type="range" min="40" max="100" [(ngModel)]="width" />
+      {{width}}
+    </div>
+  </div>
+
+<hr />
