@@ -11,10 +11,11 @@ import {
 
 import { InMemoryProductsService } from './services';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth-guard.service';
 
 const routes: Routes = [
   { path: 'examples/routing/products', component: ProductsComponent },
-  { path: 'examples/routing/products/:id', component: ProductDetailComponent }
+  { path: 'examples/routing/products/:id', component: ProductDetailComponent, canActivate: [ AuthGuard ] }
 ];
 
 @NgModule({
@@ -31,6 +32,7 @@ const routes: Routes = [
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forFeature(InMemoryProductsService),
     RouterModule.forChild(routes)
-  ]
+  ],
+  providers: [AuthGuard]
 })
 export class ProductsModule { }
