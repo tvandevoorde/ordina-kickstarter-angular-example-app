@@ -7,12 +7,17 @@ import { Component } from '@angular/core';
 })
 export class ExStructuralDirectivesComponent  {
   isTitleVisible = false;
+  isTitle2Visible = false;
   title = 'Hello World!';
   numbers = ['one', 'two', 'three'];
   rolledNumber: number;
 
   toggleTitleVisibility(): void {
     this.isTitleVisible = !this.isTitleVisible;
+  }
+
+  toggleTitle2Visibility(): void {
+    this.isTitle2Visible = !this.isTitle2Visible;
   }
 
   roll(): void {

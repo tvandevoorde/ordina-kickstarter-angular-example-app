@@ -39,6 +39,51 @@ this.isTitleVisible = !this.isTitleVisible;
 
 <div class="row">
   <div class="col-sm">
+    <h3>NgIf with else: conditional display</h3>
+    <p>Will show the element when the value is true, another when the value is false.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="font-weight-bold">component code</div>
+    <pre>isTitleVisible = false;
+title = 'Hello World!';
+
+toggleTitleVisibility(): void &#123;
+this.isTitleVisible = !this.isTitleVisible;
+&#125;
+  </pre>
+    <br />
+    <div class="font-weight-bold">component template</div>
+    <pre ngNonBindable>&lt;div *ngIf="isTitleVisible; else elseBlock"&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;
+&lt;ng-template #elseBlock&gt;
+  &lt;div>There is no title!&lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;button (click)="toggleTitleVisibility()"&gt;Toggle&lt;/button&gt;
+{{isTitleVisible}}</pre>
+  </div>
+  <div class="col-sm">
+    <div class="font-weight-bold">output</div>
+    <div *ngIf="isTitle2Visible; else elseBlock">{{title}}</div>
+    <ng-template #elseBlock>
+      <div>There is no title!</div>
+    </ng-template>
+    <button (click)="toggleTitle2Visibility()">Toggle</button>
+    {{isTitle2Visible}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+      <div class="font-weight-bold">note</div>
+    <p>You can also use ng-container instead of the div or you could use <br />
+      &lt;ng-template [ngIf]="..."&gt;...&lt;/ng-template&gt;</p>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm">
     <h3>NgFor: for-loop</h3>
     <p>Loops over a list of items.</p>
   </div>
