@@ -9,7 +9,8 @@ import {
   ExDirectivesModule,
   ExPipesModule,
   ExServicesModule,
-  ExFormsModule
+  ExFormsModule,
+  ExRoutingModule
 } from '.';
 
 import { HomeComponent } from './components/home/home.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
     ExDirectivesModule,
     ExPipesModule,
     ExServicesModule,
-    ExFormsModule
+    ExFormsModule,
+    ExRoutingModule
   ],
   exports: [HomeComponent, RouterModule]
 })

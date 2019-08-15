@@ -1,0 +1,8 @@
+<ng-template [ngIf]="product" [ngIfElse]="loading">
+  <h5>{{ product.name }}</h5>
+  <p>{{ product.description }}</p>
+  <a href="javascript:void(0)" [routerLink]="['/examples/routing/products']">Back to products</a>
+</ng-template>
+<ng-template #loading>
+  <p>Loading product...</p>
+</ng-template>

@@ -5,4 +5,5 @@ export * from './ex-directives';
 export * from './ex-pipes';
 export * from './ex-services';
 export * from './ex-forms';
+export * from './ex-routing';
 export * from './components';
