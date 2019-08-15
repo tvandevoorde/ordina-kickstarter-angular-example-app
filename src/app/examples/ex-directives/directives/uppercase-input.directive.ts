@@ -1,5 +1,6 @@
-import { Directive, HostListener, forwardRef, Renderer2, ElementRef } from '@angular/core';
+import { Directive, HostListener, forwardRef, Renderer2, ElementRef, HostBinding } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { disableDebugTools } from '@angular/platform-browser';
 
 const UPPERCASE_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -12,6 +13,8 @@ const UPPERCASE_VALUE_ACCESSOR = {
   providers: [UPPERCASE_VALUE_ACCESSOR]
 })
 export class UppercaseInputDirective implements ControlValueAccessor {
+  @HostBinding('disabled') isDisabled: boolean;
+
   onChange = (_: any) => {};
   onTouched = () => {};
 
@@ -21,6 +24,7 @@ export class UppercaseInputDirective implements ControlValueAccessor {
   @HostListener('blur') onBlur() {
     this.onTouched();
   }
+
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     if (!elementRef) {
@@ -39,7 +43,8 @@ export class UppercaseInputDirective implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.renderer.setAttribute(this.elementRef.nativeElement, 'disabled', isDisabled.toString());
+    // this.renderer.setAttribute(this.elementRef.nativeElement, 'disabled', isDisabled.toString());
+    this.isDisabled = isDisabled;
   }
 
   private formatValue(value: any): string {
