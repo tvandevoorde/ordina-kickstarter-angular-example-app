@@ -128,7 +128,7 @@ this.isTitleVisible = !this.isTitleVisible;
       <div class="col-sm">
         <div class="font-weight-bold">component code</div>
         <pre>rolledNumber: number;
-roll(): void &"#123;
+roll(): void &#123;
   this.rolledNumber = Math.floor(Math.random() * 6) + 1;
 &#125;</pre>
       </div>
@@ -175,7 +175,7 @@ roll(): void &"#123;
       <div class="col-sm">
         <div class="font-weight-bold">component code</div>
         <pre>rolledNumber: number;
-roll(): void &"#123;
+roll(): void &#123;
   this.rolledNumber = Math.floor(Math.random() * 6) + 1;
 &#125;</pre>
       </div>
@@ -205,13 +205,26 @@ roll(): void &"#123;
         <pre ngNonBindable>&lt;button (click)="roll()"&gt;Roll&lt;/button&gt;
 &#123;&#123;rolledNumber&#125;&#125;
 &lt;ng-container [ngSwitch]="rolledNumber"&gt;
-&lt;ng-container *ngSwitchCase="1"&gt;&lt;ng-container *ngTemplateOutlet="roll1"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
-&lt;ng-container *ngSwitchCase="2"&gt;&lt;ng-container *ngTemplateOutlet="roll2"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
-&lt;ng-container *ngSwitchCase="3"&gt;&lt;ng-container *ngTemplateOutlet="roll3"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
-&lt;ng-container *ngSwitchCase="4"&gt;&lt;ng-container *ngTemplateOutlet="roll4"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
-&lt;ng-container *ngSwitchCase="5"&gt;&lt;ng-container *ngTemplateOutlet="roll5"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
-&lt;ng-container *ngSwitchCase="6"&gt;&lt;ng-container *ngTemplateOutlet="roll6"&gt;&lt;/ng-container&gt;&lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="1"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll1"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="2"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll2"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="3"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll3"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="4"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll4"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="5"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll5"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *ngSwitchCase="6"&gt;
+    &lt;ng-container *ngTemplateOutlet="roll6"&gt;&lt;/ng-container&gt;
+  &lt;/ng-container&gt;
 &lt;/ng-container&gt;
+
 &lt;ng-template #roll1&gt;Too bad we're not playing cards!&lt;/ng-template&gt;
 &lt;ng-template #roll2&gt;Bad luck!&lt;/ng-template&gt;
 &lt;ng-template #roll3&gt;Halfway there!&lt;/ng-template&gt;
